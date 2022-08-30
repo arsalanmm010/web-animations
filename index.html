@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Animations</title>
+    <style>
+      .shape {
+        width: 300px;
+        height: 300px;
+      }
+    </style>
+
+    <script>
+      window.addEventListener("load", function () {
+        let shapeElement = document.querySelector(".shape");
+        let frames = [
+          { transform: "translateX(-100px)" },
+          { transform: "translateX(1000px)" },
+        ];
+        let timing = {
+          duration: 2000,
+          iterations: Infinity,
+          direction: "reverse",
+        };
+
+        let shapeAnimate = shapeElement.animate(frames, timing);
+
+        document.querySelector(".play").addEventListener("click", function () {
+          shapeAnimate.play();
+        });
+
+        document.querySelector(".pause").addEventListener("click", function () {
+          shapeAnimate.pause();
+        });
+
+        document
+          .querySelector(".reverse")
+          .addEventListener("click", function () {
+            shapeAnimate.reverse();
+          });
+
+        document
+          .querySelector(".updatePlaybackRate")
+          .addEventListener("click", function () {
+            shapeAnimate.updatePlaybackRate(shapeAnimate.playbackRate * 2);
+          });
+      });
+    </script>
+  </head>
+  <body>
+    <div><img src="car.gif" alt="moving car" class="shape" /></div>
+    <button class="play">Play</button>
+    <button class="pause">Pause</button>
+    <button class="reverse">Reverse</button>
+    <button class="updatePlaybackRate">Update</button>
+  </body>
+</html>
